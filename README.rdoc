@@ -11,6 +11,10 @@ just the basename:
 
   xmlvalidate document
 
+== Installation
+
+  gem install xmlvalidate
+
 == TODO
 * Needs specs
 * Needs documentation (Look into YARD!)
