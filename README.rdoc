@@ -1,0 +1,20 @@
+= xmlvalidate
+A tool to validate XML against XSD.
+
+== Usage
+Simply run xmlvalidate, passing in the two filenames to check:
+
+  xmlvalidate schema.xsd document.xml 
+
+If the filenames differ only in the extension .xml/.xsd, you may pass
+just the basename:
+
+  xmlvalidate document
+
+== TODO
+* Needs specs
+* Needs documentation (Look into YARD!)
+* Needs to be refactored into a libfile with methods easily usable
+from in-code, like XML::validate()
+
+

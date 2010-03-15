@@ -5,11 +5,10 @@
 # There are three ways to call xmlvalidate. The first is the full/long
 # form, the other two are convenient shorthands for the first:
 # 
-# xmlvalidate <xml> <xsd>
+# xmlvalidate <xsd> <xml>
 # xmlvalidate <basename>
 # 
 # TODO:
-# - gittify
 # - Add help
 # - Gemmify
 # - Refactor to libs for in-code reuse (XML::validate, XML::validate!, etc)
@@ -21,21 +20,21 @@ args = ARGV.dup
 
 # Detect first shorthand
 if args.size == 1
-  args = [ args.first + ".xml", args.first + ".xsd" ]
+  args = [ args.last + ".xml", args.last + ".xsd" ]
 end
 
-document = LibXML::XML::Document.file(args.first)
-schema = LibXML::XML::Schema.new(args.last)
+document = LibXML::XML::Document.file(args.last)
+schema = LibXML::XML::Schema.new(args.first)
 
 result = document.validate_schema(schema) do |message,flag|
   errors << message
 end
 
 if errors.length > 0
-  puts "#{args.first} contains errors:"
+  puts "#{args.last} contains errors:"
   puts errors.map {|e| "ERROR: #{e}"}
 else
-  puts "#{args.first} validates ok according to its schema."
+  puts "#{args.last} validates ok according to its schema."
 end
 
 exit errors.length
